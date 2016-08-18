@@ -45,6 +45,9 @@ function i18n(file, options, errors) {
       i18ns[locale] = stringContents
         .replace(options.regex, function($0, $1) {
           var match = lookup(dict, $1);
+          if (!match && options.defaultLocale) {
+            match = lookup(options.dictionary[options.defaultLocale], $1);
+          }
           var notFound = match === undefined;
 
           if (notFound) {
@@ -72,7 +75,10 @@ function lookup(dict, $1) {
     return (c || {})[a];
   }, dict);
 
-  return value;
+  if (value) {
+    return value;
+  }
+  return dict[$1];
 }
 
 /**

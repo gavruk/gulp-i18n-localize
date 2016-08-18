@@ -77,6 +77,15 @@ Locales to translate, should match `localDir` subfolders.
 
 ---
 
+##### defaultLocale
+
+Type: `string`
+Default: `undefined`
+
+If translation was not found at specific locale, it will try to look at `defaultLocale`.
+
+---
+
 ##### schema
 
 Type: `string`
